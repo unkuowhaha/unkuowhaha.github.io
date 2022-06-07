@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="lab2 note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.828-lab2">
+<meta property="og:url" content="http://example.com/2021/12/01/6-828-lab2/index.html">
+<meta property="og:site_name" content="Kano">
+<meta property="og:description" content="lab2 note">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/01/6-828-lab2/page_traslation.jpg">
+<meta property="article:published_time" content="2021-12-01T08:56:51.000Z">
+<meta property="article:modified_time" content="2021-12-08T06:25:29.148Z">
+<meta property="article:author" content="K@no">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/01/6-828-lab2/page_traslation.jpg">
+
+<link rel="canonical" href="http://example.com/2021/12/01/6-828-lab2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>6.828-lab2 | Kano</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kano</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/01/6-828-lab2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="K@no">
+      <meta itemprop="description" content="kkk@@@no">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kano">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          6.828-lab2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-01 16:56:51" itemprop="dateCreated datePublished" datetime="2021-12-01T16:56:51+08:00">2021-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-08 14:25:29" itemprop="dateModified" datetime="2021-12-08T14:25:29+08:00">2021-12-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/6-828/" itemprop="url" rel="index"><span itemprop="name">6.828</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>lab2 note</p>
+<span id="more"></span>
+
+<h2 id="虚拟地址、线性地址、物理地址"><a href="#虚拟地址、线性地址、物理地址" class="headerlink" title="虚拟地址、线性地址、物理地址"></a>虚拟地址、线性地址、物理地址</h2><p>虚拟地址(virtual address)–段转换–&gt;线性地址(liner address)–页转换–&gt;物理地址(physical address)</p>
+<h2 id="物理页"><a href="#物理页" class="headerlink" title="物理页"></a>物理页</h2><p>物理页是把总物理内存以指定大小划分为页单位的概念。在实验中一页的大小是4KB。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PageInfo</span> <span class="title">page</span>&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Page</span> *<span class="title">pp_link</span>;</span> <span class="comment">//指向上一空闲页</span></span><br><span class="line">	uint_t16 pp_ref; <span class="comment">//记录本页被引用的次数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当页面为空闲时，pp_ref=0。<br>空闲页列表初始化后:</p>
+<p>NULL&lt;–page&lt;–page&lt;–page…page&lt;–page_free_list</p>
+<p>申请新的物理页时，把page_free_list指向的物理页从空闲页列表中申请出来，alloced_page-&gt;pp_ref置1。<br>闲置物理页时，page-&gt;pp_ref需要为0才可闲置，从尾部插入闲置的物理页。</p>
+<h2 id="页转换-page-translation"><a href="#页转换-page-translation" class="headerlink" title="页转换(page translation)"></a>页转换(page translation)</h2><p>页转换指把线性地址转换为相应的物理地址。</p>
+<p><img src="/2021/12/01/6-828-lab2/page_traslation.jpg"></p>
+<p>页目录(page_dir)，存储着页表(page_table)的物理地址和相应的权限。<br>页表(page_table)存储着物理页的地址和相应的权限。<br>页目录和页表都是页。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>1.此系统能支持的最大物理内存<br>针对这个问题，网上的答案什么版本都有。<br>然后自己测试得到两个临界点，256M，1478M。<br>256M是内核虚拟基址到最大虚拟地址的空间。1478M是pages的最大空间，pages的最大空间有时会变动原因未知。</p>
+<p>2.</p>
+<h2 id="challenge"><a href="#challenge" class="headerlink" title="challenge"></a>challenge</h2><h3 id="command-extend"><a href="#command-extend" class="headerlink" title="command extend"></a>command extend</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">mon_showmappings(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv, struct Trapframe *tf)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">if</span>(argc!=<span class="number">3</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">goto</span> error;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">char</span> *low_addr=argv[<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">char</span> *hei_addr=argv[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">uint32_t</span> l_addr=strtol(low_addr,<span class="literal">NULL</span>,<span class="number">16</span>);</span><br><span class="line">  <span class="keyword">uint32_t</span> h_addr=strtol(hei_addr,<span class="literal">NULL</span>,<span class="number">16</span>);</span><br><span class="line">  </span><br><span class="line">  cprintf(<span class="string">&quot;virtual address    physical address    PTE_U  PTE_W  PTE_P\n&quot;</span>);</span><br><span class="line">  l_addr=ROUNDDOWN(l_addr,PGSIZE);</span><br><span class="line">  h_addr=ROUNDDOWN(h_addr,PGSIZE);</span><br><span class="line">  <span class="keyword">if</span>(l_addr&gt;h_addr)</span><br><span class="line">    <span class="keyword">goto</span> error;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">pte_t</span> *temp;</span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    cprintf(<span class="string">&quot;0x%08x     &quot;</span>,l_addr);</span><br><span class="line">    temp=pgdir_walk(kern_pgdir,(<span class="keyword">void</span>*)l_addr,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(!temp)</span><br><span class="line">    &#123;</span><br><span class="line">      cprintf(<span class="string">&quot;    none\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">physaddr_t</span> p_addr=PTE_ADDR(*temp);</span><br><span class="line">      <span class="keyword">int</span> per_bit=*temp&amp;<span class="number">0x1ff</span>;</span><br><span class="line">      cprintf(<span class="string">&quot;    0x%08x          %d      %d      %d\n&quot;</span>,p_addr,<span class="number">1</span>-!(per_bit&amp;PTE_U),<span class="number">1</span>-!(per_bit&amp;PTE_W),<span class="number">1</span>-!(per_bit&amp;PTE_P));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(l_addr==h_addr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l_addr+=<span class="number">0x1000</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">error:</span><br><span class="line">  cprintf(<span class="string">&quot;Useage: showmappings start_address end_address\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="buddy-system"><a href="#buddy-system" class="headerlink" title="buddy system"></a>buddy system</h3><p>对于宏定义<code>define offsetof(TYPE, MEMBER) ((size_t) &amp;((TYPE*)0)-&gt;MEMBER)</code>的理解<br>对于这个宏可以大致分为5步：</p>
+<ol>
+<li>0</li>
+<li>((TYPE *)0)</li>
+<li>( ((TYPE *)0)-&gt;MEMBER )</li>
+<li>&amp;( ((TYPE *)0)-&gt;MEMBER )</li>
+<li>( (size_t) &amp;( ((TYPE *)0)-&gt;MEMBER )</li>
+</ol>
+<p>1、内存地址开始于0；<br>2、将0转换为type类型的结构体指针，换句话说就是让编译器认为这个结构体是开始于程序段起始位置；<br>3、引用结构体中MEMBER成员；<br>4、取地址符&amp;，我们这里不关注结构体成员的内容，只取该成员的地址；<br>5、将取到的地址强制转换为size_t类型</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/23/%E6%B9%96%E6%B9%98%E6%9D%AF-%E5%A4%8D%E7%8E%B0/" rel="prev" title="湖湘杯-复现">
+      <i class="fa fa-chevron-left"></i> 湖湘杯-复现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/05/2021-sctf/" rel="next" title="2021-sctf">
+      2021-sctf <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E3%80%81%E7%BA%BF%E6%80%A7%E5%9C%B0%E5%9D%80%E3%80%81%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">虚拟地址、线性地址、物理地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E9%A1%B5"><span class="nav-number">2.</span> <span class="nav-text">物理页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E8%BD%AC%E6%8D%A2-page-translation"><span class="nav-number">3.</span> <span class="nav-text">页转换(page translation)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#challenge"><span class="nav-number">5.</span> <span class="nav-text">challenge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#command-extend"><span class="nav-number">5.1.</span> <span class="nav-text">command extend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#buddy-system"><span class="nav-number">5.2.</span> <span class="nav-text">buddy system</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">K@no</p>
+  <div class="site-description" itemprop="description">kkk@@@no</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">K@no</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

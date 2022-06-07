@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="kctf复现中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kctf2021秋">
+<meta property="og:url" content="http://example.com/2021/11/18/kctf2021%E7%A7%8B/index.html">
+<meta property="og:site_name" content="Kano">
+<meta property="og:description" content="kctf复现中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/11/18/kctf2021%E7%A7%8B/qian_dao.jpg">
+<meta property="og:image" content="http://example.com/2021/11/18/kctf2021%E7%A7%8B/7-0.jpg">
+<meta property="article:published_time" content="2021-11-18T14:38:32.000Z">
+<meta property="article:modified_time" content="2022-01-18T09:40:29.843Z">
+<meta property="article:author" content="K@no">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/18/kctf2021%E7%A7%8B/qian_dao.jpg">
+
+<link rel="canonical" href="http://example.com/2021/11/18/kctf2021%E7%A7%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>kctf2021秋 | Kano</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kano</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/18/kctf2021%E7%A7%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="K@no">
+      <meta itemprop="description" content="kkk@@@no">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kano">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kctf2021秋
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-18 22:38:32" itemprop="dateCreated datePublished" datetime="2021-11-18T22:38:32+08:00">2021-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-18 17:40:29" itemprop="dateModified" datetime="2022-01-18T17:40:29+08:00">2022-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kctf/" itemprop="url" rel="index"><span itemprop="name">kctf</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>kctf复现中</p>
+<span id="more"></span>
+
+<h1 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h1><p>签到题都做不出，有点抽象了。</p>
+<h2 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h2><p><img src="/2021/11/18/kctf2021%E7%A7%8B/qian_dao.jpg"></p>
+<p>这里就一个简单的异或逻辑，不过没看出来。<br>还就会者不难。</p>
+<h2 id="WP"><a href="#WP" class="headerlink" title="WP"></a>WP</h2><p>1.动态调试获得v2的值。<br>2.v2^序列号=0x13B88C77<br>3.直接逆出序列号</p>
+<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><h2 id="check1"><a href="#check1" class="headerlink" title="check1"></a>check1</h2><p>把输入的前8个字节放到一个256字节大的表中，暂时命名为S盒，再由这个表生成256个256字节大小的映射图。<br>然后对映射图进行一定的数值判断，若正确则继续下一个check，否则返回错误消息。</p>
+<h2 id="chekc2"><a href="#chekc2" class="headerlink" title="chekc2"></a>chekc2</h2><p>首先改变上一个检查中生成的S盒中的值的位置。<br>然后由第二部分输入的位，来决定对S盒的前8个字节的操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if ( (*(a2 + i) &amp; 1) != 0 )</span><br><span class="line">	v19 = *(&amp;dword_414420 + i) + 1;</span><br><span class="line">else</span><br><span class="line">	v19 = *(&amp;in_0_ + *(&amp;dword_414420 + i));</span><br><span class="line">*(&amp;dword_414420 + i) = v19;</span><br><span class="line">*(a2 + i) &gt;&gt;= 1;</span><br></pre></td></tr></table></figure>
+<p>最后得到的结果需要为GoodJob~。</p>
+<h2 id="wp"><a href="#wp" class="headerlink" title="wp"></a>wp</h2><p>解决wp均为爆破,都是抄的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">#check1</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">a = [0xA2, 0x9B,</span><br><span class="line">     0xF4, 0xDF, 0xAC, 0x7C, 0xA1, 0xC6, 0x16, 0xD0, 0x0F, 0xDD,</span><br><span class="line">     0xDC, 0x73, 0xC5, 0x6B, 0xD1, 0x96, 0x47, 0xC2, 0x26, 0x67,</span><br><span class="line">     0x4E, 0x41, 0x82, 0x20, 0x56, 0x9A, 0x6E, 0x33, 0x92, 0x88,</span><br><span class="line">     0x29, 0xB5, 0xB4, 0x71, 0xA9, 0xCE, 0xC3, 0x34, 0x50, 0x59,</span><br><span class="line">     0xBF, 0x2D, 0x57, 0x22, 0xA6, 0x30, 0x04, 0xB2, 0xCD, 0x36,</span><br><span class="line">     0xD5, 0x68, 0x4D, 0x5B, 0x45, 0x9E, 0x85, 0xCF, 0x9D, 0xCC,</span><br><span class="line">     0x61, 0x78, 0x32, 0x76, 0x31, 0xE3, 0x80, 0xAD, 0x39, 0x4F,</span><br><span class="line">     0xFA, 0x72, 0x83, 0x4C, 0x86, 0x60, 0xB7, 0xD7, 0x63, 0x0C,</span><br><span class="line">     0x44, 0x35, 0xB3, 0x7B, 0x19, 0xD4, 0x69, 0x08, 0x0B, 0x1F,</span><br><span class="line">     0x3D, 0x11, 0x79, 0xD3, 0xEE, 0x93, 0x42, 0xDE, 0x23, 0x3B,</span><br><span class="line">     0x5D, 0x8D, 0xA5, 0x77, 0x5F, 0x58, 0xDB, 0x97, 0xF6, 0x7A,</span><br><span class="line">     0x18, 0x52, 0x15, 0x74, 0x25, 0x62, 0x2C, 0x05, 0xE8, 0x0D,</span><br><span class="line">     0x98, 0x2A, 0x43, 0xE2, 0xEF, 0x48, 0x87, 0x49, 0x1C, 0xCA,</span><br><span class="line">     0x2B, 0xA7, 0x8A, 0x09, 0x81, 0xE7, 0x53, 0xAA, 0xFF, 0x6F,</span><br><span class="line">     0x8E, 0x91, 0xF1, 0xF0, 0xA4, 0x46, 0x3A, 0x7D, 0x54, 0xEB,</span><br><span class="line">     0x2F, 0xC1, 0xC0, 0x0E, 0xBD, 0xE1, 0x6C, 0x64, 0xBE, 0xE4,</span><br><span class="line">     0x02, 0x3C, 0x5A, 0xA8, 0x9F, 0x37, 0xAF, 0xA0, 0x13, 0xED,</span><br><span class="line">     0x1B, 0xEC, 0x8B, 0x3E, 0x7E, 0x27, 0x99, 0x75, 0xAB, 0xFE,</span><br><span class="line">     0xD9, 0x3F, 0xF3, 0xEA, 0x70, 0xF7, 0x95, 0xBA, 0x1D, 0x40,</span><br><span class="line">     0xB0, 0xF9, 0xE5, 0xF8, 0x06, 0xBC, 0xB6, 0x03, 0xC9, 0x10,</span><br><span class="line">     0x9C, 0x2E, 0x89, 0x5C, 0x7F, 0xB1, 0x1A, 0xD6, 0x90, 0xAE,</span><br><span class="line">     0xDA, 0xE6, 0x5E, 0xB9, 0x84, 0xE9, 0x55, 0xBB, 0xC7, 0x0A,</span><br><span class="line">     0xE0, 0x66, 0xF2, 0xD8, 0xCB, 0x00, 0x12, 0xB8, 0x17, 0x94,</span><br><span class="line">     0x6A, 0x4A, 0x01, 0x24, 0x14, 0x51, 0x07, 0x65, 0x21, 0xC8,</span><br><span class="line">     0x38, 0xFD, 0x8F, 0xC4, 0xF5, 0xFC]</span><br><span class="line"></span><br><span class="line">def check(d):</span><br><span class="line">    for i in d:</span><br><span class="line">        if d.count(i) &gt; 1:</span><br><span class="line">            return 1</span><br><span class="line">    return 0</span><br><span class="line"></span><br><span class="line">burst_num = [0x1e, 0x28, 0x4b, 0x6d, 0x8c, 0xa3, 0xd2, 0xfb]</span><br><span class="line"></span><br><span class="line">def enc_fun(d):</span><br><span class="line">    # print(hex(d[0]),hex(d[1]))</span><br><span class="line">    e = [0 for i in range(256 * 256)]</span><br><span class="line">    f = [0 for i in range(512)]</span><br><span class="line">    v2 = 1</span><br><span class="line">    m = 0</span><br><span class="line">    for i in range(256):</span><br><span class="line">        f[0] = d[v2 - 1]</span><br><span class="line">        f[1] = v2 &amp; 0xff</span><br><span class="line">        l = 0</span><br><span class="line"></span><br><span class="line">        for k in range(254):</span><br><span class="line">            f[2 + k * 2] = d[f[l]]</span><br><span class="line">            f[2 + k * 2 + 1] = (f[l] + 1) &amp; 0xff</span><br><span class="line">            l += 1</span><br><span class="line">        for j in range(256):</span><br><span class="line">            e[m + f[l]] += 1</span><br><span class="line">            l += 1</span><br><span class="line">        v2 += 1</span><br><span class="line">        m += 256</span><br><span class="line">    # print(e)</span><br><span class="line">    n = 0</span><br><span class="line">    v21 = 0</span><br><span class="line">    v22 = 0</span><br><span class="line">    v23 = 0</span><br><span class="line">    v24 = 0</span><br><span class="line">    for i in range(256):</span><br><span class="line">        if e[n]:</span><br><span class="line">            v21 += 1</span><br><span class="line">        if e[n + 14]:</span><br><span class="line">            v22 += 1</span><br><span class="line">        if e[n + 40]:</span><br><span class="line">            v23 += 1</span><br><span class="line">        if e[n + 79]:</span><br><span class="line">            v24 += 1</span><br><span class="line">        n += 256</span><br><span class="line">    if v24 &gt; 0xc8:</span><br><span class="line">        print(hex(v21), hex(v22), hex(v23), hex(v24))</span><br><span class="line">    if v21 == 0xA9 and v22 == 0xAC and v23 == 0xA7 and v24 &gt; 0xc8:</span><br><span class="line">        return 1</span><br><span class="line">    return 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def brust():</span><br><span class="line">    flag = 0</span><br><span class="line">    for i1 in burst_num:</span><br><span class="line">        for i2 in burst_num:</span><br><span class="line">            for i3 in burst_num:</span><br><span class="line">                for i4 in burst_num:</span><br><span class="line">                    for i5 in burst_num:</span><br><span class="line">                        for i6 in burst_num:</span><br><span class="line">                            for i7 in burst_num:</span><br><span class="line">                                for i8 in burst_num:</span><br><span class="line">                                    d = [i1, i2, i3, i4, i5, i6, i7, i8]</span><br><span class="line">                                    if check(d):</span><br><span class="line">                                        continue</span><br><span class="line">                                    d += a</span><br><span class="line">                                    if enc_fun(d):</span><br><span class="line">                                        print(i1, i2, i3, i4, i5, i6, i7, i8)</span><br><span class="line">                                        sys.exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    brust()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">#check2</span><br><span class="line">data = [0xC1, 0x9B, 0x7F, 0x58, 0x64, 0xD5, 0x77, 0x21, 0x74, 0xEB,</span><br><span class="line">        0x14, 0xBF, 0xDF, 0x25, 0x5A, 0x37, 0x85, 0x2C, 0xAF, 0x8C,</span><br><span class="line">        0xDA, 0x26, 0xE2, 0x7A, 0x87, 0x4C, 0x60, 0x99, 0x54, 0x3C,</span><br><span class="line">        0x95, 0xC0, 0xB9, 0x0C, 0xBC, 0x0E, 0xE7, 0x2D, 0x86, 0xBE,</span><br><span class="line">        0x67, 0xD3, 0xD8, 0xFC, 0x30, 0xB6, 0xC8, 0x57, 0x1E, 0x62,</span><br><span class="line">        0x3E, 0xCE, 0xA0, 0xCD, 0xF5, 0xEE, 0xA7, 0xCF, 0x45, 0xFE,</span><br><span class="line">        0xD0, 0x80, 0x05, 0xAD, 0x13, 0xF3, 0xB7, 0x6B, 0x22, 0x2B,</span><br><span class="line">        0xBD, 0x69, 0x42, 0x4B, 0xA5, 0xEA, 0xA6, 0xD2, 0x6F, 0x4F,</span><br><span class="line">        0x4E, 0x07, 0xE1, 0x36, 0x01, 0xB5, 0xAA, 0xB1, 0x94, 0x0B,</span><br><span class="line">        0x35, 0x3A, 0xC7, 0x49, 0x53, 0x82, 0xC3, 0x7B, 0x32, 0xFF,</span><br><span class="line">        0x19, 0xC4, 0xF1, 0xC9, 0xE8, 0xF7, 0x56, 0x15, 0xA3, 0x46,</span><br><span class="line">        0x89, 0x43, 0x9D, 0x8F, 0x20, 0xEF, 0xBB, 0x2A, 0xCB, 0x09,</span><br><span class="line">        0x93, 0x4A, 0x1C, 0xE3, 0x33, 0xD1, 0xE0, 0x1D, 0x72, 0x7C,</span><br><span class="line">        0x27, 0xE9, 0x17, 0x28, 0x6D, 0x6A, 0xD9, 0x00, 0x9A, 0xE5,</span><br><span class="line">        0x63, 0xDE, 0x23, 0x9F, 0x0D, 0x47, 0x3B, 0x65, 0x08, 0x84,</span><br><span class="line">        0x6C, 0x1A, 0x88, 0x12, 0xA1, 0xA4, 0xB3, 0x18, 0x24, 0x1B,</span><br><span class="line">        0xD7, 0x44, 0xDB, 0xAC, 0x6E, 0x7D, 0x51, 0x5E, 0xED, 0x50,</span><br><span class="line">        0xD6, 0x11, 0x5B, 0x9C, 0xB4, 0x68, 0x3D, 0x2F, 0x03, 0x40,</span><br><span class="line">        0xBA, 0x2E, 0xCA, 0x02, 0xE6, 0xA8, 0xEC, 0x83, 0x06, 0x5D,</span><br><span class="line">        0xB8, 0x4D, 0x97, 0x66, 0xF0, 0xFB, 0x8A, 0x55, 0xAB, 0xB2,</span><br><span class="line">        0x04, 0xFA, 0x0A, 0x31, 0x71, 0xCC, 0x8B, 0x73, 0xA9, 0x48,</span><br><span class="line">        0x5C, 0xF9, 0x98, 0xE4, 0xC6, 0x34, 0xC5, 0x7E, 0x81, 0x75,</span><br><span class="line">        0x90, 0x1F, 0x92, 0x3F, 0x9E, 0x10, 0x29, 0x52, 0x39, 0xF4,</span><br><span class="line">        0x41, 0x78, 0x5F, 0x16, 0x79, 0xC2, 0xB0, 0xDD, 0xF2, 0x61,</span><br><span class="line">        0x0F, 0x70, 0xD4, 0x91, 0xDC, 0xF6, 0xF8, 0xFD, 0x59, 0x38,</span><br><span class="line">        0x8D, 0x96, 0xAE, 0x8E, 0x76, 0xA2]</span><br><span class="line"></span><br><span class="line"># print(chr(0x58))</span><br><span class="line"></span><br><span class="line">print(&quot;start:&quot;)</span><br><span class="line">for i in range(0xff):</span><br><span class="line">    c = [0xc1, 0x9b, 0x7f, 0x58, 0x64, 0xd5, 0x77, 0x21]</span><br><span class="line">    tmp = i</span><br><span class="line">    for j in range(9):</span><br><span class="line">        if j &gt;= 8:</span><br><span class="line">            c[0] -= 1</span><br><span class="line">            c[7] -= 1</span><br><span class="line">        if j &lt; 8:</span><br><span class="line">            if tmp &amp; 1 != 0:</span><br><span class="line">                v19 = c[0] + 1#</span><br><span class="line">            else:</span><br><span class="line">                v19 = data[c[0]]#</span><br><span class="line">            c[0] = v19 &amp; 0xff#</span><br><span class="line">            tmp &gt;&gt;= 1</span><br><span class="line"></span><br><span class="line">    if c[0] == ord(&#x27;G&#x27;):#</span><br><span class="line">        print(hex(i))</span><br></pre></td></tr></table></figure>
+
+<h1 id="7"><a href="#7" class="headerlink" title="7"></a>7</h1><h2 id="c-虚函数跟踪"><a href="#c-虚函数跟踪" class="headerlink" title="c++虚函数跟踪"></a>c++虚函数跟踪</h2><p><img src="/2021/11/18/kctf2021%E7%A7%8B/7-0.jpg"><br>寻找按钮处理函数，逐个偏移函数下断点。再运行看有没有被断下来。<br>最后找到sub_41d2d0函数为按钮处理函数。</p>
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">for ( i = 0; ; i += v11 )</span><br><span class="line">  &#123;</span><br><span class="line">    v2 = unknown_libname_17(a2);</span><br><span class="line">    v11 = v2 - i;</span><br><span class="line">    v27 = 64;</span><br><span class="line">    Src = *sub_41E970(&amp;v27);</span><br><span class="line">    v26 = 64;</span><br><span class="line">    v32 = *sub_41E970(&amp;v26);</span><br><span class="line">    v25 = 64;</span><br><span class="line">    v33 = *sub_41E970(&amp;v25);</span><br><span class="line">    v24 = 64;</span><br><span class="line">    v34 = *sub_41E970(&amp;v24);</span><br><span class="line">    if ( !v11 )</span><br><span class="line">      break;</span><br><span class="line">    if ( v11 == 1 )</span><br><span class="line">    &#123;</span><br><span class="line">      v23 = (*sub_41EB70(i) &gt;&gt; 2) &amp; 0x3F;</span><br><span class="line">      Src = *sub_41E970(&amp;v23);</span><br><span class="line">      v22 = (16 * *sub_41EB70(i)) &amp; 0x3F;</span><br><span class="line">      v32 = *sub_41E970(&amp;v22);</span><br><span class="line">      v21 = 64;</span><br><span class="line">      v33 = *sub_41E970(&amp;v21);</span><br><span class="line">      v20 = 64;</span><br><span class="line">      v34 = *sub_41E970(&amp;v20);</span><br><span class="line">    &#125;</span><br><span class="line">    else if ( v11 == 2 )</span><br><span class="line">    &#123;</span><br><span class="line">      v19 = (*sub_41EB70(i) &gt;&gt; 2) &amp; 0x3F;</span><br><span class="line">      Src = *sub_41E970(&amp;v19);</span><br><span class="line">      v3 = 16 * *sub_41EB70(i);</span><br><span class="line">      v18 = ((*sub_41EB70(i + 1) &gt;&gt; 4) | v3) &amp; 0x3F;</span><br><span class="line">      v32 = *sub_41E970(&amp;v18);</span><br><span class="line">      v17 = (4 * *sub_41EB70(i + 1)) &amp; 0x3F;</span><br><span class="line">      v33 = *sub_41E970(&amp;v17);</span><br><span class="line">      v16 = 64;</span><br><span class="line">      v34 = *sub_41E970(&amp;v16);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">      v15 = (*sub_41EB70(i) &gt;&gt; 2) &amp; 0x3F;</span><br><span class="line">      Src = *sub_41E970(&amp;v15);</span><br><span class="line">      v4 = (16 * *sub_41EB70(i)) &amp; 0x3F;</span><br><span class="line">      v14 = ((*sub_41EB70(i + 1) &gt;&gt; 4) &amp; 0x3F | v4) &amp; 0x3F;</span><br><span class="line">      v32 = *sub_41E970(&amp;v14);</span><br><span class="line">      v5 = 4 * *sub_41EB70(i + 1);</span><br><span class="line">      v13 = ((*sub_41EB70(i + 2) &gt;&gt; 6) | v5) &amp; 0x3F;</span><br><span class="line">      v33 = *sub_41E970(&amp;v13);</span><br><span class="line">      v12 = *sub_41EB70(i + 2) &amp; 0x3F;</span><br><span class="line">      v34 = *sub_41E970(&amp;v12);</span><br><span class="line">      v11 = 3;</span><br><span class="line">    &#125;</span><br><span class="line">    v9 = sub_41EC00(&amp;Src, 4u);</span><br><span class="line">    v8 = v9;</span><br><span class="line">    LOBYTE(v35) = 2;</span><br><span class="line">    sub_41EB90(v9);</span><br><span class="line">    LOBYTE(v35) = 1;</span><br><span class="line">    std::string::~string(v7);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>类似base64的运算。</p>
+<h2 id="天堂之门"><a href="#天堂之门" class="headerlink" title="天堂之门"></a>天堂之门</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.text:0041D8A2 FF 5D F4                          call    fword ptr [ebp+var_C]</span><br></pre></td></tr></table></figure>
+<p>从x32切换到x64模式运行。</p>
+<p>取巧的解法就是翻看前面的堆栈信息，可以找到比较密文。<br>或者使用windbg来调试。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/18/%E5%AE%89%E5%A4%A9%E6%9D%AF/" rel="prev" title="安天杯">
+      <i class="fa fa-chevron-left"></i> 安天杯
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/20/6-828-lab1/" rel="next" title="6.828-lab1">
+      6.828-lab1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">签到题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#main%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">main函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WP"><span class="nav-number">1.2.</span> <span class="nav-text">WP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1"><span class="nav-number">2.</span> <span class="nav-text">1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#check1"><span class="nav-number">2.1.</span> <span class="nav-text">check1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chekc2"><span class="nav-number">2.2.</span> <span class="nav-text">chekc2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wp"><span class="nav-number">2.3.</span> <span class="nav-text">wp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7"><span class="nav-number">3.</span> <span class="nav-text">7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-%E8%99%9A%E5%87%BD%E6%95%B0%E8%B7%9F%E8%B8%AA"><span class="nav-number">3.1.</span> <span class="nav-text">c++虚函数跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#base64"><span class="nav-number">3.2.</span> <span class="nav-text">base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%A0%82%E4%B9%8B%E9%97%A8"><span class="nav-number">3.3.</span> <span class="nav-text">天堂之门</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">K@no</p>
+  <div class="site-description" itemprop="description">kkk@@@no</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">K@no</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

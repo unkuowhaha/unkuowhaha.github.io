@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="fuzz小寄">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fuzz">
+<meta property="og:url" content="http://example.com/2022/03/18/fuzz/index.html">
+<meta property="og:site_name" content="Kano">
+<meta property="og:description" content="fuzz小寄">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-17T17:37:21.000Z">
+<meta property="article:modified_time" content="2022-03-17T17:42:07.381Z">
+<meta property="article:author" content="K@no">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/03/18/fuzz/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>fuzz | Kano</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kano</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/fuzz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="K@no">
+      <meta itemprop="description" content="kkk@@@no">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kano">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          fuzz
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-18 01:37:21 / 修改时间：01:42:07" itemprop="dateCreated datePublished" datetime="2022-03-18T01:37:21+08:00">2022-03-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>fuzz小寄</p>
+<span id="more"></span>
+
+<p>afl-gcc.c</p>
+<p>一个封装的gcc，本质上还是gcc。<br>有两个主要的函数:<br>find_as(atgv[0])//寻找汇编器的路径<br>edit_params(argc,argv)//构建编译的参数</p>
+<p>find_as():<br>    1.从环境变量”AFL_PATH”获取路径变量，如果存在该变量目录，则寻找该目录下的汇编器，存在则返回该汇编器的路径。<br>    2.如不能从环境变量获取路径，则获取当前的目录，并查看当前目录下的汇编器，存在则返回该路径。<br>    3.否则返回默认的汇编器路径/usr/local/lib/afl/。</p>
+<p>edit_params():<br>    1.选择相应的编译器。<br>    2.检查argv[]中是否存在-B选项。<br>    3.根据各种环境变量来继续构建编译参数。</p>
+<p>afl-as.c<br>#afl_maybe_log(random number):<br>    if(afl_area_ptr==0)<br>        jmp afl_setup;<br>    afl_store;</p>
+<p>#afl_store():<br>    cal_loc=cur_loc^afl_prev_loc;<br>    afl_prev_loc^=cal_loc;<br>    afl_prev_loc&gt;&gt;=1;<br>    *afl_area_ptr[cal_loc]++;<br>    //afl_return<br>    return al+=127;</p>
+<p>#afl_setup():<br>    if(afl_setup_failure!=0)<br>        jmp afl_return;<br>    if(*afl_global_area_ptr)<br>        jmp afl_store;<br>    else<br>        jmp afl_setup_first;</p>
+<p>#afl_setup_first():<br>    save all regs to stack;<br>    if(shm_id_str=getenv(“AFL_SHM_ENV”))<br>        shm_id=atoi(shm_id_str);<br>        if(shmat(shm_id,0,0)==-1)<br>            jmp afl_set_abort<br>        afl_area_ptr=shmat(shm_id,0,0);<br>        afl_global_area_ptr=afl_area_ptr;<br>        //afl_forkserver<br>        wlen=write(199,afl_temp,4);<br>        if(wlen==4)<br>            //afl_fork_wait_loop<br>            rlen=read(198,afl_temp,4);<br>            if(rlen==4)<br>                pid=fork();<br>                if(pid&lt;0)<br>                    jmp afl_die;<br>                if(pid==0)<br>                    //afl_fork_resume<br>                    close(198);<br>                    close(199);<br>                    resume regs value;<br>                    jmp afl_store;<br>                else<br>                    write(199,pid,4);<br>                    waitpid(pid,afl_temp,0);<br>                    write(199,afl_temp,4);<br>                    jmp afl_fork_wait_loop;<br>            else<br>                jmp afl_die;<br>        else<br>            jmp afl_fork_resume;<br>    else<br>        jmp afl_set_abort</p>
+<p>afl_set_abort():<br>    afl_setup_failure++;<br>    resume regs value;<br>    jmp afl_store;</p>
+<p>afl_die():<br>    exit(0);</p>
+<p>afl-fuzz.cc<br>main()<br>    1.获取当前时间的值，根据时间值和fuzz进程的pid生成随机数种子<br>    2.while循环获取参数<br>        2.1 -i，获取输入目录路径，in_dir<br>        2.2 -o，获取输出目录路径，out_dir<br>        2.3 -M<br>        2.4 -S<br>        2.5 -f，输入文件，out_file<br>        2.6 -x<br>        2.7 -t，获取超时时间，exec_tmout<br>        2.8 -m，内存限制大小<br>        2.9 -b，<br>        2.10 -d，指定块<br>        2.11 -B，使用给定的bitmap初始化virgin_bits<br>        2.12 -C，启用crash_mode<br>        2.13 -n，启用numb_mode<br>        2.14 -T，名字use_banner<br>        2.15 -Q，启用qemu_mode<br>        2.16 -V，仅输出版本号<br>    3.为不同的信号设置不同的处理函数<br>    4.检查asan设置<br>    5.保存初始的命令行字符串<br>    6.检查程序名字长度，限制在40以内<br>    7.检查是否在tty<br>    8.获取cpu核的数量和正在运行的任务的数量<br>    9.寻找一个空闲的cpu核并且绑定它<br>    10.检查内核对crash的处理<br>    11.检查cpu的比例调节器<br>    12.设置post进程<br>    13.申请共享内存并且映射到trace_bits<br>    14.初始化count_class_lookup16[]<br>    15.设置输出目录<br>    16.将testcase加入到queue中，queue_path指向queue的最后一个<br>    17.自动加载extras[]<br>    18.为testcase建立硬连接<br>    19.如没有-f的参数，创建.cur_input文件作为out_fd<br>    20.检查目标文件是否为ELF文件<br>    21.把所有的testcase都fuzz一次<br>    22.对queue内的q重新排列<br>    23.输出状态<br>    24.如果设置了resuming_fuzz字段，从给定地方开始fuzz<br>    25.保存当前a_extras[]的数据，没有则退出<br>    26.while循环<br>        26.1cull_queue<br>        26.2如果queue_cur为0，queue_cur=queue[0]<br>        26.3对当前的queue_cur进行fuzz<br>        26.4queue_cur=queue_cur-&gt;next<br>        26.5如果stop_soon为真则退出while循环<br>    27.退出fuzz程序并且关闭相应的资源和子进程</p>
+<p>function_part:<br>#############################<br>trace_bits中1个byte代表一条边<br>#############################</p>
+<p>add_to_queue(fname,len,passed_det)<br>    1.alloc一个queue_entry,并且初始化信息<br>    2.如果queue_top不为空,则取代之。否则q_prev100,queue,queue_top均指向这个条目<br>    3.queue_paths++;pending_not_fuzzed++;<br>    4.</p>
+<p>destroy_queue()<br>    1.free掉整个queue<br>    2.</p>
+<p>write_bitmap()<br>    1.如果bitmap_changed==0,返回<br>    2.否则把当前的virgin_bits写入到out_dir/fuzz_bitmap文件中</p>
+<p>read_bitmap(fname)<br>    1.从指定文件读取bitmap,并且用于初始化virgin_bits<br>    2.</p>
+<p>has_new_bits(virgin_map)<br>    1.初始化循环次数<br>    2.取trace_bits和virgin_map(virgin_bits)<br>    3.如果<em>trace_bits不为0并且</em>trace_bits&amp;*virgin_bits不为0,表示有新的路径或者某条路径的执行次数改变<br>        3.1如果vir[i]==0xff为真,则发现了新的路径,ret=2<br>        3.2否则只是改变某条路径的执行次数,ret=1<br>    4.如果ret不为0,bitmap_changed=1<br>    5.return ret</p>
+<p>minimize_bits(dst,src)<br>    1.使用一个bit代替一个byte来代表一条边<br>    2.</p>
+<p>update_bitmap_score(q)<br>    1.计算出当前q的总运行时间<br>    2.如果top_rated[i]不为空,比较当前条目的总运行时间和以占位条目的总运行时间<br>        2.1当前条目总运行时间更大则跳过此次循环<br>        2.2否则top_rated[i]-&gt;tc_ref–;如果引用为零则free掉其trace_mini<br>    3.top_rated[i]=q;q-&gt;tc_ref++;<br>    4.如果q的trace_mini为零则为其调用minimize_bits<br>    5.score_changed=1</p>
+<p>cull_queue()<br>    1.如果dumb_mode||!score_changed,则返回<br>    2.初始化temp_virgin_bits,一个bit代表一条边<br>    3.把queue中的每个条目的q-&gt;favored设为0<br>    4.历遍top_rated[],如果条目在temp_v中有新的路径,<br>        4.1则将其标记为favored,queue_favored++<br>        4.2如果其未被fuzz过,pending_favored++<br>    5.如果case的q-&gt;favored为0,将其标注为冗余的</p>
+<p>read_testcase()<br>    1.检查in_dir是否存在<br>    2.利用scandir()和alphasort()获取in_dir下的文件<br>    3.遍历in_dir下的文件是否可读<br>    4.使用函数add_to_queue()将testcase添加到queue中<br>    5.last_path_time=0;<br>    6.queued_at_start=queued_paths;</p>
+<p>save_auto()<br>    1.如果auto_changed为0,返回<br>    2.for循环将a_extras[i]的数据写入到out_dir/queue/.state/auto_extras/auto_i文件中</p>
+<p>init_forkserver()<br>    1.创建两个管道,st_pipe用于传输状态,ctl_pipe用于传输控制<br>    2.fork()<br>    fuzz进程:<br>        1.关闭ctl_pipe的读端和st_pipe的写端,fsrv_ctl_fd=ctl_pipe[1],fsrv_st_fd=st_pipe[0]<br>        2.设置定时器<br>        3.读取forkserver的状态<br>        4.如果forkserver初始化正常,返回</p>
+<pre><code>forkserver进程:
+    1.设置进程最大文件描述符,最大内存限制,内存转储文件大小
+    2.setsid()让子进程成为新的进程组
+    3.重定向stdout和stderror到/dev/null
+    4.如果out_file不为空,则作为标准输入,否则重定向到/dev/null
+    5.重定向FORKSRV_FD为ctl_pipe的读端,FORKSRV_FD+1为st_pipe的写端
+    6.关闭不需要的文件描述符
+    7.execv()运行目标文件
+</code></pre>
+<p>run_target(argv,timeout)<br>    1.初始化trace_bits为0<br>    2.通过fsrv_ctl_fd唤醒forkserver进程<br>    3.通过fsrv_st_fd读取child进程的PID<br>    4.设置计时器,如果超时就杀死子进程<br>    5.tatal_execs++;<br>    6.将trace_bits的执行次数进行替代<br>    7.获取child进程接收到的信号<br>        7.1如果信号为SIG_KILL,返回FAULT_TMOUT<br>        7.2否则返回FAULT_CRASH<br>    8.返回FAULT_NONE</p>
+<p>write_to_testcase(mem,len)<br>    1.删除原有的out_file文件<br>    2.创建新的out_file文件并且写入*mem的内容</p>
+<p>write_with_gap(mem,len,skip_at,skip_len)<br>    1.把<em>mem[skip_at]到</em>mem[skip_at+skip_len]的跳过再写入到文件中<br>    2.</p>
+<p>calibrate_case(argv,q,use_mem,handicao,from_queue)<br>    1.保存当前的stage_cur,stage_max,exec_tmout,stage_name<br>    2.q-&gt;cal_failed++;<br>    3.如果forkserver没有创建,调用init_forkserver<br>    4.如果当前q不是来自in_dir,复制trace_bits到first_bits,调用has_new_bits<br>    5.循环stage_max次<br>        5.1如果q-&gt;cksum不为0,调用show_stats<br>        5.2调用write_to_testcase,把输入写入.cur_input文件<br>        5.3调用fault=run_target()<br>        5.4如果stop_soon==1或者fault!=crash_mode,goto abort_calibratetion<br>        5.5如果stage_cur==0并且当次运行trace_bits没有覆盖到路径,fault=FAULT_NOINST,goto abort_calibratetion<br>        5.6计算当前trace_bits的哈希值cksum<br>        5.7如果cksum和q-&gt;exec_cksum不相同,代表着是第一次运行或者是相同参数得到不同路径,调用has_new_bits()<br>            5.7.1如果q-&gt;exec_cksum不为0,代表不是初次运行<br>            5.7.2遍历整个bitmap,当first_trace[i]!=trace_bits[i]且var_bytes[i]为空时,var_bytes=1,stage_max=40,var_detected=1<br>            5.7.3如果q-&gt;exec_cksum为0,代表是初次运行<br>            5.7.4q-&gt;exec_cksum=cksum,memcpy(first_trace,trace_bits,MAP_SIZE)<br>    6.更新总运行时间和轮次<br>    7.更新平均运行时间q-&gt;exec_us,bitmap的大小q-&gt;bitmap_size,q-&gt;cal_failed=0<br>    8.更新总路径的覆盖数<br>    9.调用update_bitmap_score(q)<br>    10如果该q是初次运行,不是dumb_mode,fault为FAULT_NONE,没有新的路径发现或者命中路径,fault=FAULT_NOBITS<br>    11.abort_calibratetion:<br>        11.1如果发现新的覆盖且q-&gt;has_new_cov为0,q-&gt;has_new_cov=1,queued_with_cov++<br>        11.2如果var_detected为1,表示有可能的路径<br>            *计算出var_bytes的数量var_byte_count<br>            *如果q没有被标记为variable,则标记为variable,并创建一个符号连接<br>            *queued_variable++<br>    12.恢复原有的stage_cur,stage_max,stage_name<br>    13.ruturn fault</p>
+<p>perform_dry_run(argv)<br>    1.获取当且queue的第一个queue_entry,q<br>    2.如果q不为空<br>        2.1读取当前q的内容到use_mem<br>        2.2调用res=calibrate_case()<br>        2.3如果stop_soon为1,返回<br>        2.4如果res为crash_mode或者FAULT_NOBITS,打印相应的信息<br>        switch(res)<br>        FAULT_NONE<br>            *如果q是第一个queue_entry,调用check_map_coverage()检查当前覆盖率<br>            *如果是crash_mode,输出错误信息<br>        FAULT_TMOUT<br>            *如果timeout_given=2,输出警告信息,q-&gt;cal_failed=CAL_CHANCES,cal_failures++<br>        FAULT_CRASH<br>            *如果是crash_mode,直接break<br>            *如果skip_crashes为真,按照FAULT_TMOUT处理<br>            *输出关于内存的信息<br>        FAULT_ERROE<br>            *输出信息不能运行目标程序<br>        FAULT_NOINST<br>            *输出信息没有任何路径<br>        FAULT_NOBITS<br>            *useless_at_start++<br>            *如果in_bitmap和shuffle_queue都为0,提示当前q可能无用<br>        2.5如果q-&gt;var_behavior为真,代表相同的输入可能有不同的输出路径<br>        2.6q=q-&gt;next<br>    3.如果cal_failures不为空,根据cal_failuers输出不同的错误信息</p>
+<p>link_or_copy(old_path,new_path)<br>    1.创建一个硬连接,创建成功则返回<br>    2.在new_path复制一个old_path的文件</p>
+<p>pivot_inputs()<br>    1.获取当且queue的第一个queue_entry,q<br>    2.如果q不为空<br>        2.1如果文件的名字符合语法,id对应<br>            *文件名使用原始的文件名<br>            *找出q的父文件和适当的q-&gt;depth<br>        2.2否则使用按照语法规则的文件名<br>        2.3调用link_or_copy()<br>        2.4q-&gt;fname修改为新的文件名<br>        2.5如果q-&gt;passed_det为真,调用mark_as_det_done(),将其标记为det_done<br>        2.6q=q-&gt;next;id++</p>
+<p>save_if_interesting(argv,mem,len,fault)<br>    1.如果fault为crash_mode<br>        1.1如果has_new_bits返回0,表示没有新的路径或命中,返回0<br>        1.2如果有新的路径或者路径的执行次数发生改变,将其加入到queue中<br>        1.3更新queue_top-&gt;exec_cksum<br>        1.4调用claibrate_case()<br>        1.5把mem的写入到新建的文件fn<br>        1.6keeping=1<br>    2.switch(fault)<br>    FAULT_TMOUT<br>        *total_tmouts++;<br>        *简化trace_bits,来检查virgin_tmout是否有新的路径,没有return keeping<br>        *如果exec_tmout小于hang_tmout,用hang_tmout运行程序,排除因时间导致的误判<br>        *unique_hangs++;<br>    FAULT_CRASH<br>        *total_crash++;<br>        *简化trace_bits,来检查virgin_crash是否有新的路径,没有return keeping<br>        *unique_crash为0,则调用write_crash_readme<br>        *unique_crash++;<br>    FAULT_ERROR<br>        *输出错误信息<br>    default<br>        *return keeping<br>    3.将当前mem写入到对应的文件中,out_dir/hangs/xxx 或者out_dir/crashes/xxx</p>
+<p>next_p2(val)<br>    1.返回大于val的2的次方的最小值</p>
+<p>trim_case(argv,q,in_buf)<br>    1.根据q-&gt;len计算出移除的起点位,remove_len<br>    2.当起点位不小于4或者next(q-&gt;len)/1024时<br>        2.1stage_max=q-&gt;len/remove_len<br>        2.2当remove_len小于q-&gt;len时<br>            *如果q-&gt;len大于8,移除步长(trim_avail)为4,否则小于4<br>            *移除in_buf[remove_pos,remove_pos+trim_avail],再写入到.cur_input<br>            *调用fault=run_target()<br>            *如果stop_soon或者fault为FAULT_ERROR,跳过修建<br>            *计算trace_bits的cksum<br>            *如果没有新的路径或者命中,remove_pos+trim_avail并且将当前trace_bits保存到clean_trace,设置needs_write=1<br>            *否则移除buf[remove_pos,remove_pos+trim_avail]<br>            *stage_cur++<br>        2.3remove_len&gt;&gt;=1<br>    3.如果need_write为1,修改当前q-&gt;fname的内容为in_buf,使用clean_trace还原trace_bits,update_bitmap_score(q)<br>    4.return fault</p>
+<p>common_fuzz_stuff(argv,out_buf,len)<br>    1.将out_buf写到.cur_input文件中<br>    2.调用fault=run_target()<br>    3.如果fault为FAULT_TMOUT,且超时次数超过了限制次数,cur_skipped_paths++;return 1<br>    4.否则超时次数设为0<br>    5.如果skip_requested为1,skip_requested=0,cur_skipped_paths++;return 1<br>    6.调用save_if_interesting<br>    7.return 0</p>
+<p>fuzz_one(argv)<br>    1.如果pending_favored为真,且queue_cur-&gt;was_fuzzed=1或者queue_cur-&gt;favored=0,表示当前队列条目已经fuzz过或者不是favored,则return 1<br>    2.如果dumb_mode为0,queue_cur-&gt;favored=0,queued_paths&gt;10,跟当前队列条目是否fuzz过来设置return 1的机率,fuzz过的机率是%95,没有fuzz过的是%75<br>    3.把queue_cur原始内容映射到内存中,orig_in和in_buf为映射的内存地址</p>
+<pre><code>CALIBRATION
+    *如果queue_cur-&gt;cal_failed不为0,且不是因为超时导致,对queue_cur调用calibrate_case
+    *如果运行结果不为FAULT_NONE,cur_skipped_paths++,goto abandon_entry,
+
+TRIMMING
+    *如果dumb_mode=0且queue_cur-&gt;trim_done=0,对queue_cur调用trim_case
+    *设置queue_cur-&gt;trim_done=1
+    *len为修剪后的长度
+
+4.复制in_buf中len长的内容到out_buf中
+5.对queue_cur调用calculate_score
+6.如果skip_deterministic=1或queue_cur被fuzz过或queue_cur-&gt;passed_det=1,goto havoc_stage
+7.doing_det=1
+
+SIMPLE BITFILP
+    *设置stage_name=&quot;bitflip 1/1&quot;
+    *通过宏定义FLIP_BIT实现1 bit翻转
+    *对翻转后的out_buf调用common_fuzz_stuff
+    *再对out_buf进行1 bit翻转,还原out_buf
+    *在对一个字节翻转后,计算得到的trace_bits的cksum,如果cksum!=queue_cur-&gt;exec_cksum,把该字节加入到a_collect[]中
+    *如果a_collect中字符的长度大于MIN_AUTO_EXTRA且小于MAX_AUTO_EXTRA,对a_collect调用maybe_add_auto
+    *每次翻转后更新new_hit_cnt=queued_paths+unique_crashes
+
+    *设置stage_name=&quot;bitflip 2/1&quot;
+    *进行连续2 bit的翻转
+
+    *设置stage_name=&quot;bitflip 4/1&quot;
+    *进行连续4 bit的翻转
+    
+    *初始化eff_map用于记录字节变化是否使得trace_bits的变化有效,0代表无效,1代表有效
+
+    *设置stage_name=&quot;bitflip 8/8&quot;
+    *通过异或0xff进行1 byte的翻转
+    *如果翻转后得到的trace_bits的cksum不等于queue_cur-&gt;exec_cksum,将该byte在eff_map中的值置1
+    *如果eff_cnt太大,则将整个eff_map设为1
+    *blocks_eff_select+=eff_cnt
+
+    *设置stage_name=&quot;bitflip 16/8&quot;
+    *查看eff_map相邻两位是否为0,如果相邻两位为0,则跳过这个2 byte的翻转
+    *进行连续2 byte的翻转
+
+    *设置stage_name=&quot;bitflip 32/8&quot;
+    *查看eff_map相邻四位是否为0,如果相邻四位为0,则跳过这个4 byte的翻转
+    *进行连续4 byte的翻转
+
+ARITHMETIC INC/DEC
+    *arith 8/8 对out_buf中的每byte进行整数加减变异
+    *arith 16/8 对out_buf中的每word进行整数的加减变异
+    *arith 32/8 对out_buf中的每dword进行整数的加减变异
+    *每次进行算术运算变异前,先检查当前数据在eff_map上是否有效
+    *再调用could_be_bitflip,来跳过当前out_buf在变异后的结果在bitflip阶段已经产生过,减少重复开销
+    *进行算术加减的范围从0到ARITH_MAX(35)
+
+INTERESTING VALUES
+    *interest 8/8 对out_buf中的每byte替换成interesting_8中的值
+    *interest 16/8 对out_buf中的每word替换成interesting_16中的值
+    *interest 32/8 对out_buf中的每dword替换成interesting_32中的值
+    *每次进行算术运算变异前,先检查当前数据在eff_map上是否有效
+    *再调用could_be_bitflip,could_be_arith减少重复开销
+
+DICTIONARY STUFF
+    *user extras (over) 使用用户提供的token对out_buf进行替换
+    *user extras (insert) 使用用户提供的token对out_buf每个位置进行插入
+    *auto extras (over) 使用自动检测到的token对out)buf进行替换
+    *如果每个阶段开始前，没有相应的替换或者插入token,跳过对应的阶段
+
+RANDOM HAVOC
+    *对out_buf进行随机次数的变异操作,选择的操作也是通过随机数来决定
+    
+    switch(case)
+    case 0:
+        对out_buf中随机一个bit进行翻转
+    case 1:
+        对out_buf中随机一个byte替换成interesting_8中的随机一个byte
+    case 2:
+        对out_buf中随机一个word替换成interesting_16中的随机一个word,替换值的端序随机,大端序或者小端序
+    case 3:
+        对out_buf中随机一个dword替换成interesting_32中的随机一个dword,随机端序
+    case 4:
+        对out_buf中随机一个byte进行算术减法,运算值随机
+    case 5:
+        对out_buf中随机一个byte进行算术加法,运算值随机
+    case 6:
+        对out_buf中随机一个word进行算术减法,运算值随机,随机端序
+    case 7:
+        对out_buf中随机一个word进行算术加法,运算值随机,随机端序
+    case 8:
+        对out_buf中随机一个dword进行算术减法,运算值随机,随机端序
+    case 9:
+        对out_buf中随机一个dword进行算术加法,运算值随机,随机端序
+    case 10:
+        对out_buf中随机一个byte异或一个1~255的随机值
+    case 11:
+    case 12:
+        对out_buf从随机位置移除随机长度的byte
+    case 13:
+        对out_buf从随机位置插入一段随机长度的内容,%75插入一段原文的内容,%25插入一段随机数(如 90 90或者aa aa aa)
+    case 14:
+        对out_buf从随机位置替换一段随机长度的内容,%75替换为原文内容,%25替换为一段随机数
+    case 15:
+        对out_buf从随机位置替换成a_extras或者extras中一个随机的token
+    case 16:
+        对out_buf从随机位置插入a_extras或者extras中一个随机的token
+    
+    *对变异后的out_buf进行fuzz
+    *还原变异前out_buf
+    *如果有新的queue_entry出现,stage_max*2,perf_score*2
+    *记录相应的新增信息
+
+SPLICING
+    *如果use_splicing字段设为1,启用该阶段
+    *从in_dir中取一个testcase和当前testcase进行内容的重组
+    *goto havoc
+
+8.设置ret_val=0
+9.如果queue_cur通过了calibrate_case,且queue_cur-&gt;was_fuzzed=0
+10.就设置queue_cur-&gt;was_fuzzed=1,pending_not_fuzz--,如果queue_cur为favored,pending_favored--
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/06/6-828-lab3/" rel="prev" title="6-828-lab3">
+      <i class="fa fa-chevron-left"></i> 6-828-lab3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/20/2022-%E8%99%8E%E7%AC%A6/" rel="next" title="2022-虎符">
+      2022-虎符 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">K@no</p>
+  <div class="site-description" itemprop="description">kkk@@@no</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">K@no</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
